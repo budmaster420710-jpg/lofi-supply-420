@@ -3,62 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outreach & Tech | FAQ & Ambient</title>
+    <title>Business FAQ & Ambient Player</title>
     <style>
-        :root { --neon: #00ff41; --bg: #0a0a0a; --panel: #141414; }
-        body { background: var(--bg); color: var(--neon); font-family: 'Courier New', monospace; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: auto; border: 1px solid var(--neon); padding: 20px; box-shadow: 0 0 15px rgba(0, 255, 65, 0.2); }
+        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; line-height: 1.6; }
+        .container { max-width: 600px; margin: auto; border: 1px solid #00ff41; padding: 20px; box-shadow: 0 0 10px #00ff41; }
+        h1 { text-align: center; border-bottom: 1px solid #00ff41; padding-bottom: 10px; font-size: 1.2rem; }
         
-        /* FAQ Styling */
-        details { background: var(--panel); border: 1px solid #333; margin-bottom: 10px; padding: 10px; border-radius: 4px; }
-        summary { cursor: pointer; font-weight: bold; outline: none; list-style: none; }
-        summary::before { content: "> "; }
-        .answer { padding-top: 10px; color: #fff; font-size: 0.9rem; border-top: 1px solid #333; margin-top: 10px; }
+        /* FAQ Section */
+        details { margin-bottom: 15px; border: 1px solid #333; padding: 10px; cursor: pointer; }
+        summary { font-weight: bold; color: #fff; }
+        .answer { margin-top: 10px; color: #00ff41; font-size: 0.9rem; border-top: 1px dotted #333; padding-top: 10px; }
 
-        /* Player Styling */
-        .player-section { margin-top: 30px; border-top: 2px solid var(--neon); padding-top: 20px; }
-        .track { padding: 8px; cursor: pointer; border: 1px solid transparent; }
-        .track:hover { background: #1a1a1a; border-color: var(--neon); }
-        .active { background: var(--neon) !important; color: #000; }
-        audio { width: 100%; filter: invert(1); margin-top: 15px; }
+        /* Player Section */
+        .player-box { margin-top: 30px; border-top: 2px solid #00ff41; padding-top: 20px; }
+        .track { padding: 8px; margin: 4px 0; border: 1px solid transparent; cursor: pointer; }
+        .track:hover { border-color: #00ff41; background: #111; }
+        .active { background: #00ff41 !important; color: #000; font-weight: bold; }
+        audio { width: 100%; filter: invert(1); margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>BUSINESS STRATEGY & FAQ</h1>
+    <h1>STRATEGY & TECH FAQ</h1>
 
     <details>
-        <summary>What is the Outreach Strategy for 2026?</summary>
-        <div class="answer">Focusing on high-value business strategies for YouTube creators and automating tech workflows via Termux.</div>
+        <summary>Why was the page Not Found?</summary>
+        <div class="answer">The server lost the connection to the index.html file after the restart. Using this consolidated file ensures all components load from one place.</div>
     </details>
 
     <details>
-        <summary>How is the Tech environment optimized?</summary>
-        <div class="answer">By consolidating audio assets and code into a single, server-rendered environment to avoid "Page Not Found" errors.</div>
+        <summary>Current Outreach Strategy</summary>
+        <div class="answer">Focusing on instrumental-only background loops for tech-focused content and high-engagement YouTube streams.</div>
     </details>
 
-    <div class="player-section">
-        <h3>AMBIENT TRACKS (Instrumental Only)</h3>
+    <div class="player-box">
+        <h3>PLAYER (INSTRUMENTAL ONLY)</h3>
         <div id="playlist">
-            <div class="track" onclick="playTrack(this, 'Deep Space.wav')">01. DEEP SPACE</div>
-            <div class="track" onclick="playTrack(this, 'Rain.wav')">02. RAIN ON WINDOW</div>
-            <div class="track" onclick="playTrack(this, 'Bedroom Beats Loop.mp3')">03. BEDROOM BEATS</div>
-            <div class="track" onclick="playTrack(this, 'country lofi.mp3')">04. COUNTRY LOFI</div>
+            <div class="track" onclick="play(this, 'Deep Space.wav')">01. DEEP SPACE</div>
+            <div class="track" onclick="play(this, 'Rain.wav')">02. RAIN ON WINDOW</div>
+            <div class="track" onclick="play(this, 'Bedroom Beats Loop.mp3')">03. BEDROOM BEATS</div>
+            <div class="track" onclick="play(this, 'country lofi.mp3')">04. COUNTRY LOFI</div>
+            <div class="track" onclick="play(this, 'Midnight Desk Lamp.wav')">05. MIDNIGHT DESK LAMP</div>
         </div>
-        <audio id="audio-engine" controls loop></audio>
+        <audio id="main-audio" controls loop></audio>
     </div>
 </div>
 
 <script>
-    function playTrack(element, file) {
-        const audio = document.getElementById('audio-engine');
+    function play(el, file) {
+        const audio = document.getElementById('main-audio');
         const tracks = document.querySelectorAll('.track');
-        
         tracks.forEach(t => t.classList.remove('active'));
-        element.classList.add('active');
-        
-        audio.src = file; // Ensure files are in the same folder as this HTML
+        el.classList.add('active');
+        audio.src = file;
         audio.play();
     }
 </script>
