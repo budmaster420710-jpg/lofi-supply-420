@@ -3,63 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business FAQ & Ambient Player</title>
+    <title>LOFI SUPPLY 420 | THE VAULT</title>
     <style>
-        body { background: #0a0a0a; color: #00ff41; font-family: 'Courier New', monospace; padding: 20px; line-height: 1.6; }
-        .container { max-width: 600px; margin: auto; border: 1px solid #00ff41; padding: 20px; box-shadow: 0 0 10px #00ff41; }
-        h1 { text-align: center; border-bottom: 1px solid #00ff41; padding-bottom: 10px; font-size: 1.2rem; }
-        
-        /* FAQ Section */
-        details { margin-bottom: 15px; border: 1px solid #333; padding: 10px; cursor: pointer; }
-        summary { font-weight: bold; color: #fff; }
-        .answer { margin-top: 10px; color: #00ff41; font-size: 0.9rem; border-top: 1px dotted #333; padding-top: 10px; }
-
-        /* Player Section */
-        .player-box { margin-top: 30px; border-top: 2px solid #00ff41; padding-top: 20px; }
-        .track { padding: 8px; margin: 4px 0; border: 1px solid transparent; cursor: pointer; }
-        .track:hover { border-color: #00ff41; background: #111; }
-        .active { background: #00ff41 !important; color: #000; font-weight: bold; }
-        audio { width: 100%; filter: invert(1); margin-top: 10px; }
+        body { background: #0a0a0a; color: #e0e0e0; font-family: 'Courier New', Courier, monospace; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        h1 { color: #00ff88; text-shadow: 2px 2px #000; border-bottom: 2px solid #333; padding-bottom: 10px; width: 100%; text-align: center; letter-spacing: 5px; }
+        .vault-container { width: 100%; max-width: 600px; }
+        .track-card { background: #161616; border: 1px solid #333; padding: 20px; margin-bottom: 20px; border-radius: 4px; border-left: 5px solid #00ff88; }
+        .track-title { font-weight: bold; font-size: 1.1rem; color: #fff; display: block; margin-bottom: 10px; text-transform: uppercase; }
+        audio { width: 100%; margin: 10px 0; filter: invert(100%) hue-rotate(90deg); }
+        .button-group { display: flex; gap: 10px; margin-top: 10px; }
+        .buy-btn { flex: 1; padding: 12px; border: none; border-radius: 2px; cursor: pointer; font-weight: bold; text-align: center; text-decoration: none; font-size: 0.8rem; transition: 0.2s; }
+        .digital { background: #00ff88; color: #000; }
+        .license { background: #333; color: #00ff88; border: 1px solid #00ff88; }
+        .buy-btn:hover { background: #fff; color: #000; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>STRATEGY & TECH FAQ</h1>
+    <h1>LOFI SUPPLY 420</h1>
+    <p style="color: #666; margin-bottom: 30px;">// 16 HIGH QUALITY WAV TRACKS</p>
 
-    <details>
-        <summary>Why was the page Not Found?</summary>
-        <div class="answer">The server lost the connection to the index.html file after the restart. Using this consolidated file ensures all components load from one place.</div>
-    </details>
+    <div class="vault-container">
 
-    <details>
-        <summary>Current Outreach Strategy</summary>
-        <div class="answer">Focusing on instrumental-only background loops for tech-focused content and high-engagement YouTube streams.</div>
-    </details>
+        <script>
+            const tracks = [
+                "Deep Space", "Nature's Breath", "Bedroom Beats Loop", "Midnight City", 
+                "Rainy Windows", "Sunset Chill", "Lo-Fi Dreams", "Cloud Nine", 
+                "Street Lights", "Coffee Shop", "Echoes", "Vinyl Static", 
+                "After Hours", "Quiet Mind", "Slow Motion", "Final Wave"
+            ];
 
-    <div class="player-box">
-        <h3>PLAYER (INSTRUMENTAL ONLY)</h3>
-        <div id="playlist">
-            <div class="track" onclick="play(this, 'Deep Space.wav')">01. DEEP SPACE</div>
-            <div class="track" onclick="play(this, 'Rain.wav')">02. RAIN ON WINDOW</div>
-            <div class="track" onclick="play(this, 'Bedroom Beats Loop.mp3')">03. BEDROOM BEATS</div>
-            <div class="track" onclick="play(this, 'country lofi.mp3')">04. COUNTRY LOFI</div>
-            <div class="track" onclick="play(this, 'Midnight Desk Lamp.wav')">05. MIDNIGHT DESK LAMP</div>
-        </div>
-        <audio id="main-audio" controls loop></audio>
+            const container = document.querySelector('.vault-container');
+
+            tracks.forEach((track, index) => {
+                const card = document.createElement('div');
+                card.className = 'track-card';
+                card.innerHTML = `
+                    <span class="track-title">${(index + 1).toString().padStart(2, '0')}. ${track}</span>
+                    <audio controls src="${track}.wav"></audio>
+                    <div class="button-group">
+                        <a href="#" class="buy-btn digital">BUY WAV ($2)</a>
+                        <a href="#" class="buy-btn license">LICENSE ($25)</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        </script>
     </div>
-</div>
-
-<script>
-    function play(el, file) {
-        const audio = document.getElementById('main-audio');
-        const tracks = document.querySelectorAll('.track');
-        tracks.forEach(t => t.classList.remove('active'));
-        el.classList.add('active');
-        audio.src = file;
-        audio.play();
-    }
-</script>
 
 </body>
 </html>
