@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outreach & Tech | FAQ & Ambient</title>
+    <style>
+        :root { --neon: #00ff41; --bg: #0a0a0a; --panel: #141414; }
+        body { background: var(--bg); color: var(--neon); font-family: 'Courier New', monospace; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; border: 1px solid var(--neon); padding: 20px; box-shadow: 0 0 15px rgba(0, 255, 65, 0.2); }
+        
+        /* FAQ Styling */
+        details { background: var(--panel); border: 1px solid #333; margin-bottom: 10px; padding: 10px; border-radius: 4px; }
+        summary { cursor: pointer; font-weight: bold; outline: none; list-style: none; }
+        summary::before { content: "> "; }
+        .answer { padding-top: 10px; color: #fff; font-size: 0.9rem; border-top: 1px solid #333; margin-top: 10px; }
+
+        /* Player Styling */
+        .player-section { margin-top: 30px; border-top: 2px solid var(--neon); padding-top: 20px; }
+        .track { padding: 8px; cursor: pointer; border: 1px solid transparent; }
+        .track:hover { background: #1a1a1a; border-color: var(--neon); }
+        .active { background: var(--neon) !important; color: #000; }
+        audio { width: 100%; filter: invert(1); margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>BUSINESS STRATEGY & FAQ</h1>
+
+    <details>
+        <summary>What is the Outreach Strategy for 2026?</summary>
+        <div class="answer">Focusing on high-value business strategies for YouTube creators and automating tech workflows via Termux.</div>
+    </details>
+
+    <details>
+        <summary>How is the Tech environment optimized?</summary>
+        <div class="answer">By consolidating audio assets and code into a single, server-rendered environment to avoid "Page Not Found" errors.</div>
+    </details>
+
+    <div class="player-section">
+        <h3>AMBIENT TRACKS (Instrumental Only)</h3>
+        <div id="playlist">
+            <div class="track" onclick="playTrack(this, 'Deep Space.wav')">01. DEEP SPACE</div>
+            <div class="track" onclick="playTrack(this, 'Rain.wav')">02. RAIN ON WINDOW</div>
+            <div class="track" onclick="playTrack(this, 'Bedroom Beats Loop.mp3')">03. BEDROOM BEATS</div>
+            <div class="track" onclick="playTrack(this, 'country lofi.mp3')">04. COUNTRY LOFI</div>
+        </div>
+        <audio id="audio-engine" controls loop></audio>
+    </div>
+</div>
+
+<script>
+    function playTrack(element, file) {
+        const audio = document.getElementById('audio-engine');
+        const tracks = document.querySelectorAll('.track');
+        
+        tracks.forEach(t => t.classList.remove('active'));
+        element.classList.add('active');
+        
+        audio.src = file; // Ensure files are in the same folder as this HTML
+        audio.play();
+    }
+</script>
+
+</body>
+</html>
